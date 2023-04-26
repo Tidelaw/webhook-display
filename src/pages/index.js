@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import AddressInput from '../../components/AddressInput';
+import Setup from '../../components/Setup';
 
 export default function Home() {
   return (
@@ -11,11 +11,9 @@ export default function Home() {
       </Head>
 
       
-      <div className="flex container flex-col min-w-full justify-center ">
+      <div className="flex container flex-col min-w-full h-full justify-center ">
 
-        {/* <div className='flex justify-center text-7xl font-black text-orange p-16'></div> */}
-
-        <AddressInput></AddressInput>
+        <Setup></Setup>
 
       </div>
 
