@@ -11,7 +11,7 @@ export default function Home() {
       </Head>
 
       
-      <div className="flex container flex-col min-w-full h-full justify-center ">
+      <div className="flex container flex-col min-w-full h-screen justify-center ">
 
         <Setup></Setup>
 

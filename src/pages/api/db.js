@@ -9,13 +9,18 @@ export default async function handler(req, res) {
     let url = `https://api.helius.xyz/v0/tokens/metadata?api-key=${process.env.HELIUS_KEY}`
     let validTXs = []
 
-    let queryTokens = data.map((e,i) => {
+    let queryTokens = data.filter(e=>e.events.nft).map((e,i) => {
+
         if (e.events.nft) {
             validTXs.push(e)
+            // console.log(e.events.nft.nfts[0].mint, i)
             return e.events.nft.nfts[0].mint
         }
+        else {
+            console.log(i, e.description)
+        }
     }).slice(0, 99)
-
+    console.log(queryTokens.length, validTXs.length)
     let query = await axios.post(url, { mintAccounts: queryTokens })
     let output = validTXs.map((e, i)=>
     {

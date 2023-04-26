@@ -3,54 +3,86 @@ import Image from 'next/image';
 
 export default function TXDisplay({ TXs }) {
 
+    const relativeTimePeriods = [
+        [31536000, 'year'],
+        [2419200, 'month'],
+        [604800, 'week'],
+        [86400, 'day'],
+        [3600, 'hour'],
+        [60, 'minute'],
+        [1, 'second']
+    ];
+
+    function relativeTime(date) {
+        if (!(date instanceof Date)) date = new Date(date * 1000);
+        const seconds = (new Date() - date) / 1000;
+        for (let [secondsPer, name] of relativeTimePeriods) {
+            if (seconds >= secondsPer) {
+                const amount = Math.floor(seconds / secondsPer);
+                return `${amount} ${name}${amount ? 's' : ''} ago`;
+            }
+        }
+        return 'Just now';
+    }
+
+    function description(type) {
+        switch (type) {
+            case "NFT_LISTING":
+                return "Listed NFT"
+            case "NFT_SALE":
+                return "Bought NFT"
+            case "NFT_CANCEL_LISTING":
+                return "Cancel Listing"
+        }
+    }
+
     console.log(TXs, '123')
 
-    // let NFTs = []
+    let transactionDivs = []
 
-    // for (let i = 0; i < tokens.length; i++) {
+    for (let i = 0; i < TXs.length; i++) {
+        if (TXs[i].metadata.onChainData) {
+            console.log(i)
+            transactionDivs.push(
+                <div className="w-[65rem]">
+                    <div className='flex'>
+                        <a target="_blank" rel="noreferrer" href={"https://xray.helius.xyz/tx/" + TXs[i].signature} className="flex items-center flex-row space-x-8 w-full text-white border border-1 border-neutral-800 px-4 py-4 rounded-lg hover:bg-neutral-800 duration-200">
 
-    //     if (tokens[i].offChainData) {
-    //         NFTs.push(
-    //             <div key={tokens[i].offChainData.mint} className='flex w-64 flex-col h-max rounded-lg cursor-pointer '>
-    //                 <div className='flex rounded-lg border border-1 border-neutral-800 hover:bg-neutral-800 duration-200 flex-col'>
-    //                     <a target="_blank" rel="noreferrer" href={"https://xray.helius.xyz/token/" + tokens[i].mint}>
+                            <React.Fragment>{(TXs[i].metadata.offChainData ?
+                                (<img alt={TXs[i].metadata.onChainData.data.name} className='flex w-16 h-16 rounded-lg justify-center' src={TXs[i].metadata.offChainData.image}></img>
+                                ) : (<div className="flex w-16 h-16 rounded-lg justify-center bg-neutral-900 flex-shrink-0"></div>
 
-    //                         <div className='flex'>
-    //                             <img className='flex w-64 rounded-lg' src={tokens[i].offChainData.image}></img>
-    //                         </div>
 
-    //                         <div className='flex flex-row justify-between p-4 h-18 text-md'>
-    //                             <div className="flex flex-col">
-    //                                 <div className='flex flex-row space-x-2'>
-    //                                     <div className=' text-slate-100 font-medium truncate'>{tokens[i].offChainData.name}</div>
-    //                                     <Image alt="Verified" src="/verified.svg" width="16" height="16"></Image>
-    //                                 </div>
-    //                                 <div className='flex text-orange font-bold text-sm'>{tokens[i].onChainData.data.symbol ? (tokens[i].onChainData.data.symbol) : tokens[i].offChainData.symbol}</div>
-    //                             </div>
+                                ))}</React.Fragment>
 
-    //                             <div className="flex flex-col items-start h-full">
-    //                                 <a target="_blank" rel="noreferrer" href={"https://www.magiceden.io/item-details/" + tokens[i].mint}>
-    //                                     <Image className="flex flex-start hover:bg-neutral-600 duration-200 p-1 rounded-lg" alt="ME" src="/ME.svg" width="24" height="24"></Image>
-    //                                 </a>
-    //                             </div>
-    //                         </div>
+                            <a target="_blank" rel="noreferrer" className='flex w-[20%] flex-col hover:bg-neutral-700 rounded-lg ease-in-out duration-200 p-1' href={"https://xray.helius.xyz/token/" + TXs[i].metadata.mint}>
+                                <div className='font-medium text-lg'>{TXs[i].metadata.onChainData.data.name}</div>
+                                <div className='font-medium text-lg text-orange'>{TXs[i].metadata.onChainData.data.symbol}</div>
+                            </a>
+                            <div className="flex w-[65%] font-medium text-md">
+                                {/* {description(TXs[i].type)} */}
+                                {TXs[i].description}
+                            </div>
 
-    //                     </a>
-    //                 </div>
+                            <div className="flex w-[15%] font-medium text-md">
+                                {relativeTime(new Date(TXs[i].created_at))}
+                            </div>
+                        </a>
+                    </div>
+                </div>
 
-    //             </div>
-    //         )
-    //     }
-    // }
+            )
+        }
+    }
 
     return (
         TXs
             ? (
-                <div className="flex flex-col space-y-8 xl:space-y-0 xl:flex-row ">
+                <div className="flex w-full flex-col space-y-8 xl:space-y-0 xl:flex-row ">
 
                     <div className="flex w-full h-max flex-col">
-                        <div key="NFTS" className='flex w-full h-max rounded-lg flex-col items-center justify-center gap-4'>
-                            {/* {NFTs} */}
+                        <div key="TXs" className='flex w-full h-max rounded-lg flex-col items-center justify-center gap-4'>
+                            {transactionDivs}
                         </div>
                     </div>
 
