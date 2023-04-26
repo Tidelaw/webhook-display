@@ -5,37 +5,9 @@ export default function TXDisplay({ TXs }) {
 
     console.log(TXs, '123')
 
-    // let NFTs = [], FTs = [];
+    // let NFTs = []
 
     // for (let i = 0; i < tokens.length; i++) {
-
-    //     if (tokens[i].onChainData) {
-    //         if (tokens[i].onChainData.tokenStandard == "Fungible" || tokens[i].onChainData.tokenStandard == "FungibleAsset") {
-    //             console.log(tokens[i], FTs)
-    //             FTs.push(
-    //                 <div key={tokens[i].mint} className="flex flex-row w-full text-white border border-1 border-neutral-800 px-4 py-4 rounded-lg hover:bg-neutral-800 duration-200">
-    //                     <a className="w-full" target="_blank" rel="noreferrer" href={"https://xray.helius.xyz/token/" + tokens[i].mint}>
-    //                         <div className="flex w-full items-center justify-between">
-
-    //                             <div className="flex items-center space-x-4">
-    //                                 <React.Fragment>{(tokens[i].offChainData ?
-    //                                     (<img className='flex w-8 h-8 rounded-lg' src={tokens[i].offChainData.image}></img>) : (<svg viewBox="64 64 896 896" focusable="false" data-icon="copyright" width="32" height="32" fill="currentColor" aria-hidden="true"><path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372zm5.6-532.7c53 0 89 33.8 93 83.4.3 4.2 3.8 7.4 8 7.4h56.7c2.6 0 4.7-2.1 4.7-4.7 0-86.7-68.4-147.4-162.7-147.4C407.4 290 344 364.2 344 486.8v52.3C344 660.8 407.4 734 517.3 734c94 0 162.7-58.8 162.7-141.4 0-2.6-2.1-4.7-4.7-4.7h-56.8c-4.2 0-7.6 3.2-8 7.3-4.2 46.1-40.1 77.8-93 77.8-65.3 0-102.1-47.9-102.1-133.6v-52.6c.1-87 37-135.5 102.2-135.5z"></path></svg>
-    //                                     ))}</React.Fragment>
-    //                                 <div className="font-medium">
-    //                                     {tokens[i].onChainData.data.name}
-    //                                 </div>
-    //                             </div>
-
-    //                             <div className="font-semibold">{tokens[i].amount}</div>
-
-    //                         </div>
-    //                     </a>
-    //                 </div>
-    //             )
-
-    //             continue
-    //         }
-    //     }
 
     //     if (tokens[i].offChainData) {
     //         NFTs.push(
@@ -76,14 +48,8 @@ export default function TXDisplay({ TXs }) {
             ? (
                 <div className="flex flex-col space-y-8 xl:space-y-0 xl:flex-row ">
 
-                    <div className="flex w-full xl:w-2/5 h-max flex-col">
-                        <div className="flex w-full h-full rounded-lg flex-col items-center gap-4" key="FTs">
-                            {/* {FTs} */}test
-                        </div>
-                    </div>
-
-                    <div className="flex w-full xl:w-3/5 h-max flex-col">
-                        <div key="NFTS" className='flex w-full h-max rounded-lg flex-row flex-wrap items-center justify-center gap-4'>
+                    <div className="flex w-full h-max flex-col">
+                        <div key="NFTS" className='flex w-full h-max rounded-lg flex-col items-center justify-center gap-4'>
                             {/* {NFTs} */}
                         </div>
                     </div>
