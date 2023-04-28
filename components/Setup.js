@@ -23,9 +23,7 @@ export default function Setup() {
   }, []);
 
   return (
-    <div className='flex w-full h-full flex-col justify-center items-center space-y-24'>
-
-
+    <div className='flex w-full h-full flex-col justify-center items-center space-y-24 p-8'>
 
       <React.Fragment>{(
         loaded ? (

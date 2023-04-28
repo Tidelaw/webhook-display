@@ -71,9 +71,9 @@ export default function TXDisplay({ TXs }) {
     return (
         TXs
             ? (
-                <div className="flex w-full flex-col space-y-8 xl:space-y-0 xl:flex-row ">
+                <div className="flex w-full flex-col space-y-8 xl:space-y-0 xl:flex-row overflow-y-scroll no-scrollbar">
 
-                    <div className="flex w-full h-max flex-col">
+                    <div className="flex w-full h-max flex-col p-8 ">
                         <div key="TXs" className='flex w-full h-max rounded-lg flex-col items-center justify-center gap-4'>
                             {transactionDivs}
                         </div>
