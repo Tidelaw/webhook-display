@@ -25,41 +25,34 @@ export default function TXDisplay({ TXs }) {
         return 'Just now';
     }
 
-    function description(type) {
-        switch (type) {
-            case "NFT_LISTING":
-                return "Listed NFT"
-            case "NFT_SALE":
-                return "Bought NFT"
-            case "NFT_CANCEL_LISTING":
-                return "Cancel Listing"
-        }
-    }
-
-    console.log(TXs, '123')
-
     let transactionDivs = []
 
     for (let i = 0; i < TXs.length; i++) {
         if (TXs[i].metadata.onChainData) {
-            console.log(i)
+            console.log(TXs[i])
             transactionDivs.push(
-                <div className="w-[65rem]">
+                <div className="w-full xl:w-[65rem]">
                     <div className='flex'>
                         <a target="_blank" rel="noreferrer" href={"https://xray.helius.xyz/tx/" + TXs[i].signature} className="flex items-center flex-row space-x-8 w-full text-white border border-1 border-neutral-800 px-4 py-4 rounded-lg hover:bg-neutral-800 duration-200">
 
                             <React.Fragment>{(TXs[i].metadata.offChainData ?
                                 (<img alt={TXs[i].metadata.onChainData.data.name} className='flex w-16 h-16 rounded-lg justify-center' src={TXs[i].metadata.offChainData.image}></img>
-                                ) : (<div className="flex w-16 h-16 rounded-lg justify-center bg-neutral-900 flex-shrink-0"></div>
+                                ) : (
+                                    <React.Fragment>{(TXs[i].metadata.onChainData ? (
+                                        <img alt={TXs[i].metadata.onChainData.data.name} className='flex w-16 h-16 rounded-lg justify-center' src={TXs[i].metadata.onChainData.data.uri}></img>
+                                    ) : (
+                                        <div className="flex w-16 h-16 rounded-lg justify-center bg-neutral-900 flex-shrink-0"></div>
+                                    ))}</React.Fragment>
+
 
 
                                 ))}</React.Fragment>
 
-                            <a target="_blank" rel="noreferrer" className='flex w-[20%] flex-col hover:bg-neutral-700 rounded-lg ease-in-out duration-200 p-1' href={"https://xray.helius.xyz/token/" + TXs[i].metadata.mint}>
+                            <a target="_blank" rel="noreferrer" className='flex w-[25%] flex-col hover:bg-neutral-700 rounded-lg ease-in-out duration-200 p-1' href={"https://xray.helius.xyz/token/" + TXs[i].metadata.mint}>
                                 <div className='font-medium text-lg'>{TXs[i].metadata.onChainData.data.name}</div>
                                 <div className='font-medium text-lg text-orange'>{TXs[i].metadata.onChainData.data.symbol}</div>
                             </a>
-                            <div className="flex w-[65%] font-medium text-md">
+                            <div className="flex w-[60%] font-medium text-md">
                                 {/* {description(TXs[i].type)} */}
                                 {TXs[i].description}
                             </div>
