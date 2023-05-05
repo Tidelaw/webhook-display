@@ -28,10 +28,11 @@ export default function TXDisplay({ TXs }) {
     let transactionDivs = []
 
     for (let i = 0; i < TXs.length; i++) {
+        if (TXs[i].metadata){
         if (TXs[i].metadata.onChainData) {
             console.log(TXs[i])
             transactionDivs.push(
-                <div className="w-full xl:w-[65rem]">
+                <div className="w-full xl:w-[65rem] xl:h-[7rem] animate-fade-down ease-in-out">
                     <div className='flex'>
                         <a target="_blank" rel="noreferrer" href={"https://xray.helius.xyz/tx/" + TXs[i].signature} className="flex items-center flex-row space-x-8 w-full text-white border border-1 border-neutral-800 px-4 py-4 rounded-lg hover:bg-neutral-800 duration-200">
 
@@ -65,7 +66,7 @@ export default function TXDisplay({ TXs }) {
                 </div>
 
             )
-        }
+        }}
     }
 
     return (
@@ -75,7 +76,7 @@ export default function TXDisplay({ TXs }) {
 
                     <div className="flex w-full h-max flex-col p-8 ">
                         <div key="TXs" className='flex w-full h-max rounded-lg flex-col items-center justify-center gap-4'>
-                            {transactionDivs}
+                            {transactionDivs.reverse()}
                         </div>
                     </div>
 

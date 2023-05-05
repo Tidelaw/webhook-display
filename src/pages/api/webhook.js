@@ -1,4 +1,5 @@
-// const axios = require('axios');
+
+
 import { supabase } from '../../../supabaseClient';
 
 export default async function handler(req, res) {
@@ -12,7 +13,7 @@ export default async function handler(req, res) {
         .from('txs')
         .upsert(webhook_data)
       res.status(200).json("success")
-      
+
       console.log(data, error)
 
     };
@@ -21,3 +22,6 @@ export default async function handler(req, res) {
 
   catch (err) { console.log(err) }
 }
+
+
+

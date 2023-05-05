@@ -1,11 +1,10 @@
 import axios from 'axios';
 import React, { useEffect, useState } from "react";
 import TXDisplay from "./TXDisplay";
-import Image from 'next/image';
 
 export default function Setup() {
   const [TXs, setTXs] = useState();
-  const [loaded, setLoad] = useState(false)
+  // const [loaded, setLoad] = useState(false)
 
   useEffect(() => {
 
@@ -13,20 +12,26 @@ export default function Setup() {
 
       let { data } = await axios.get('/api/db');
       
-      setLoad(true)
+      // setLoad(true)
 
       setTXs(data)
     }
 
-    fetchTXs()
+    fetchTXs();
+
+    const interval = setInterval(() => {
+      fetchTXs();
+    }, 1000);
+
+    return () => clearInterval(interval);
 
   }, []);
 
   return (
-    <div className='flex w-full h-full flex-col justify-center items-center space-y-24 p-8'>
+    <div className='flex w-full h-full flex-col justify-center items-center space-y-24'>
 
       <React.Fragment>{(
-        loaded ? (
+        TXs ? (  
           <TXDisplay TXs={TXs}></TXDisplay>
         ) : (
           <div className='flex h-screen items-center'>
