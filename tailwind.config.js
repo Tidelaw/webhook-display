@@ -8,9 +8,10 @@ module.exports = {
   theme: {
     extend: {
       colors : {
-        'orange': '#f50',
+        'orange': '#f07900',
         'light-orange':'#ff9d00',
-        'light-black':'#14171c'
+        'light-black':'#131313',
+        'orange-black':'#2b2b2b'
       },
     },
     container:{

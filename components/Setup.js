@@ -4,7 +4,6 @@ import TXDisplay from "./TXDisplay";
 
 export default function Setup() {
   const [TXs, setTXs] = useState();
-  // const [loaded, setLoad] = useState(false)
 
   useEffect(() => {
 
@@ -12,8 +11,6 @@ export default function Setup() {
 
       let { data } = await axios.get('/api/db');
       
-      // setLoad(true)
-
       setTXs(data)
     }
 
@@ -25,7 +22,37 @@ export default function Setup() {
 
     return () => clearInterval(interval);
 
-  }, []);
+  }, []); 
+
+  // This version of the function is for demos, it is not practical
+  //   async function fetchTXs() { 
+
+  //     let { data } = await axios.get('/api/db');
+      
+  //     if (data.length > 100) {
+  //       const batchSize = 5;
+  //       let startIndex = 0;
+    
+  //       const intervalId = setInterval(() => {
+  //         setTXs(prevTXs => {
+  //           const newData = data.slice(startIndex, startIndex + batchSize);
+  //           const newArray = Array.isArray(prevTXs) ? [...prevTXs, ...newData] : newData;
+  //           startIndex += batchSize;
+    
+  //           if (startIndex >= data.length) {
+  //             clearInterval(intervalId);
+  //           }
+    
+  //           return newArray;
+  //         });
+  //       }, 500);
+  //     } else {
+  //       setTXs(data);
+  //     }
+  //   }
+
+  //   fetchTXs();
+  // }, []);
 
   return (
     <div className='flex w-full h-full flex-col justify-center items-center space-y-24'>

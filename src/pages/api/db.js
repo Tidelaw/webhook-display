@@ -28,7 +28,7 @@ export default async function handler(req, res) {
     })
 
     await Promise.all(output.map(async (item) => {
-        if (item.metadata){
+        if (item.metadata && item.metadata.onChainData){
         if (item.metadata.onChainData.data.uri) {
             const { data } = await axios.get(item.metadata.onChainData.data.uri);
             item.metadata.onChainData.data.uri = data.image;
