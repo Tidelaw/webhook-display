@@ -1,5 +1,8 @@
 # **Helius Webhook Showcase**
 
+## **[Walkthrough](https://tidelaw.notion.site/Helius-Webhook-Showcase-d0f07ef7cd524dddb579a31af2fd13da)**
+
+<br>
 
 **Sneak Peek:**
 
@@ -38,9 +41,3 @@ In order for the dAPP to work, a webhook is necessary - in order to set one up, 
 `https://www.helius.xyz `
 
 <br><br>
-
-# **Building the app**
-
-First, you'll need to navigate to the webhook section of the Helius Developer Portal, and create a webhook, inputting the account address that you wish to track. In this example (that will be used in the code and for production), we are tracking an address on the Mainnet, with **enhanced** data unique to Helius, 
-
-![[webhook]](/demo-images/setup_webhook.png)
